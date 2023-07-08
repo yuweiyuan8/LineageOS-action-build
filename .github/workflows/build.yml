@@ -20,7 +20,7 @@ jobs:
       - name: Install the repo command
         run: |
           curl https://storage.googleapis.com/git-repo-downloads/repo > ~/bin/repo
-          sudo cp ~/bin/repo /bin/repo
+          sudo cp ~/bin/repo /usr/bin/repo
           sudo chmod a+x ~/bin/repo
           
       - name: Configure git
