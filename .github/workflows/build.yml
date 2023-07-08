@@ -26,14 +26,15 @@ jobs:
 
       - name: Configure git
         run: |
-          git config --global user.email git@github.com
-          git config --global user.name github
+          git config --global user.email 666@test.com
+          git config --global user.name test
       
       - name: Initialize the LineageOS source repository
         run: |
           cd ~/android/lineage
           repo init -u https://github.com/LineageOS/android.git -b lineage-17.1 --git-lfs
           repo sync
+
       - name: Prepare the device-specific code
         run: |
           cd ~/android/lineage
