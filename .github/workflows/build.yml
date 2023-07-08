@@ -36,7 +36,7 @@ jobs:
       - name: Initialize the LineageOS source repository
         run: |
           cd ~/android/lineage
-          repo init -u https://github.com/LineageOS/android.git -b lineage-17.1
+          repo init -u https://github.com/LineageOS/android.git -b lineage-17.1 --git-lfs
           repo sync
       - name: Prepare the device-specific code
         run: |
