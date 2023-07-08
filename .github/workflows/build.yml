@@ -22,6 +22,14 @@ jobs:
           curl https://storage.googleapis.com/git-repo-downloads/repo > ~/bin/repo
           chmod a+x ~/bin/repo
       
+      - name: Put the ~/bin directory in your path of execution
+        run: |
+          echo '# set PATH so it includes user's private bin if it exists
+          if [ -d "$HOME/bin" ] ; then
+              PATH="$HOME/bin:$PATH"
+          fi' >  ~/.profile
+          source ~/.profile
+          
       - name: Configure git
         run: |
           git config --global user.email git@github.com
