@@ -1,7 +1,7 @@
 name: LineageOS-action-build
 
 on:
-    workflow_dispatch:
+    workflow_dispatch: build lineageos
 
 jobs:
     build:
