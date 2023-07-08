@@ -20,15 +20,8 @@ jobs:
       - name: Install the repo command
         run: |
           curl https://storage.googleapis.com/git-repo-downloads/repo > ~/bin/repo
-          chmod a+x ~/bin/repo
-      
-      - name: Put the ~/bin directory in your path of execution
-        run: |
-          echo '# set PATH so it includes user's private bin if it exists' >  ~/.profile
-          echo 'if [ -d "$HOME/bin" ] ; then' >  ~/.profile
-          echo '   PATH="$HOME/bin:$PATH" ' >  ~/.profile
-          echo 'fi' >  ~/.profile 
-          source ~/.profile
+          sudo cp ~/bin/repo /bin/repo
+          sudo chmod a+x ~/bin/repo
           
       - name: Configure git
         run: |
