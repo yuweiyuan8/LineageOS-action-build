@@ -24,10 +24,10 @@ jobs:
       
       - name: Put the ~/bin directory in your path of execution
         run: |
-          echo '# set PATH so it includes user's private bin if it exists
-          if [ -d "$HOME/bin" ] ; then
-              PATH="$HOME/bin:$PATH"
-          fi' >  ~/.profile
+          echo '# set PATH so it includes user's private bin if it exists' >  ~/.profile
+          echo 'if [ -d "$HOME/bin" ] ; then' >  ~/.profile
+          echo '   PATH="$HOME/bin:$PATH" ' >  ~/.profile
+          echo 'fi' >  ~/.profile 
           source ~/.profile
           
       - name: Configure git
