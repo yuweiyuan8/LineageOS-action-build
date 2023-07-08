@@ -8,12 +8,12 @@ jobs:
       runs-on: ubuntu-20.04
       steps:
       - name: Install the build packages
-        run: 
+        run: |
           sudo apt update
           sudo apt -y install bc bison build-essential ccache curl flex g++-multilib gcc-multilib git git-lfs gnupg gperf imagemagick lib32ncurses5-dev lib32readline-dev lib32z1-dev libelf-dev liblz4-tool libncurses5 libncurses5-dev libsdl1.2-dev libssl-dev libxml2 libxml2-utils lzop pngcrush rsync schedtool squashfs-tools xsltproc zip zlib1g-de python3
 
       - name: Install the platform-tools
-        run: 
+        run: |
           curl https://dl.google.com/android/repository/platform-tools-latest-linux.zip
           unzip platform-tools_r34.0.3-linux.zip -d ~
           echo '# add Android SDK platform tools to path
@@ -23,40 +23,40 @@ jobs:
           source ~/.profile
       
       - name: Create the directories
-        run: 
+        run: |
           mkdir -p ~/bin
           mkdir -p ~/android/lineage
       
       - name: Install the repo command
-        run:
+        run: |
           curl https://storage.googleapis.com/git-repo-downloads/repo > ~/bin/repo
           chmod a+x ~/bin/repo
       
       - name: Configure git
-        run:
+        run: |
           git config --global user.email git@github.com
           git config --global user.name github
       
       - name: Turn on caching to speed up build
-        run:
+        run: |
           echo 'export USE_CCACHE=1' > ~/.bashrc
           echo 'export CCACHE_EXEC=/usr/bin/ccache' > ~/.bashrc
           ccache -M 50G
 
       - name: Initialize the LineageOS source repository
-        run:
+        run: |
           cd ~/android/lineage
           repo init -u https://github.com/LineageOS/android.git -b lineage-17.1
           repo sync
       - name: Prepare the device-specific code
-        run:
+        run: |
           cd ~/android/lineage
           git clone https://github.com/flydrz/android_device_oppo_PBEM00 -b dummy_lineage-17.1
           source build/envsetup.sh
           breakfast dumpling
       
       - name: Start the build
-        run:
+        run: |
           cd ~/android/lineage
           croot
           brunch dumpling
