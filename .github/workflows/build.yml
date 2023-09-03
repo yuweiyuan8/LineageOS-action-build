@@ -32,21 +32,23 @@ jobs:
       - name: Initialize the LineageOS source repository
         run: |
           cd ~/android/lineage
-          repo init -u https://github.com/LineageOS/android.git -b lineage-17.1 
+          repo init -u https://github.com/Halium/android -b halium-7.1 --depth=1 
           repo sync
 
       - name: Prepare the device-specific code
         run: |
           cd ~/android/lineage
-          git clone https://github.com/flydrz/android_device_oppo_PBEM00 -b dummy_lineage-17.1
+          #git clone https://github.com/flydrz/android_device_oppo_PBEM00 -b dummy_lineage-17.1
           source build/envsetup.sh
-          breakfast dumpling
+          breakfast Z00A
       
       - name: Start the build
         run: |
           cd ~/android/lineage
-          croot
-          brunch dumpling
+          mka mkbootimg
+          export USE_HOST_LEX=yes
+          mka hybris-boot
+          mka systemimage
 
       - name: Upload to Release
         uses: softprops/action-gh-release@v1
